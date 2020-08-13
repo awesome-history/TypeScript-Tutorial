@@ -1,0 +1,25 @@
+{
+  "name": "ts-tutorial",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "typescript": "^3.9.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "transpile": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/awesome-history/TypeScript-Tutorial.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/awesome-history/TypeScript-Tutorial/issues"
+  },
+  "homepage": "https://github.com/awesome-history/TypeScript-Tutorial#readme"
+}
