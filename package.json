@@ -6,7 +6,9 @@
   "dependencies": {
     "typescript": "^3.9.7"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "tslint": "^6.1.3"
+  },
   "scripts": {
     "dev": "tsc -w",
     "transpile": "tsc",

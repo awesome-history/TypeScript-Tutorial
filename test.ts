@@ -5,3 +5,7 @@ class Test{
 }
 
 new Test();
+
+let testName = '123';
+testName.toString()
+
