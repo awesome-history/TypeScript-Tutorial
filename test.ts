@@ -38,3 +38,19 @@ const p: Person = {
 // Array를 통한 선언의 방식 2가지
 // Person[];
 // Array<Person>
+
+// tuple 형태
+let tuple: [string, number] = [`str`, 10];
+// 값의 순서도 맞아야한다.
+// tuple = [11, `10`];
+// tuple = [`str`, 11];
+
+// enum 평소와 같은 Enum type
+enum EnumTest {
+    red,
+    blue,
+    green = 'good',
+}
+
+// EnumTest.blue => 1
+// EnumTest.green => 'good'
