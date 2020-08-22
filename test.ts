@@ -22,7 +22,6 @@ let str: string = `fadsfas`;
 // 사용하면 안된다. any를 사용하지 않는것이 TS를 올바르게 사용하는것과 같다.
 // let any : any = false;
 
-
 // interface 선언
 interface Person {
     name: string;
