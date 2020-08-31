@@ -78,3 +78,62 @@ const numberInter: InterfaceNumber = {}
 numberInter[0] = 'hi';
 numberInter[1] = 'hello';
 ```
+---
+## interface - Function
+
+```tsx
+// interface funtion은 당연히 처리가 된다.
+interface InterfaceFuntion {
+    name: string;
+    age: number;
+
+    hello(): void;
+    helloEs6(): number;
+    helloArrow(): string;
+}
+
+// Arrow function 사용도 가능하다.
+// function 명칭을 제거해주는것이 좋다 -> ES6
+// return 은 () 뒤에 선언한다.
+const a: InterfaceFuntion = {
+    name: 'a',
+    age: 1,
+    hello: function () {
+        console.log('hi~');
+    },
+    helloEs6(): number {
+        return 1;
+    },
+    helloArrow: (): string => {
+        console.log('Arrow funiton');
+        return 'hi';
+    }
+}
+
+a.hello();
+a.helloArrow();
+a.helloEs6();
+```
+
+---
+## Class Implements Interface
+
+```tsx
+// 가장 기본적으로 사용하는 방식이다.
+class implementsClassTest implements IPerson {
+    name: string;
+
+    constructor(name: string) {
+        this.name = name;
+    }
+
+    hello(): void {
+        console.log(`hello! ${this.name}`);
+    }
+}
+
+const implementsTestFunction = new implementsClassTest('connor');
+
+// hello! connor
+implementsTestFunction.hello();
+```

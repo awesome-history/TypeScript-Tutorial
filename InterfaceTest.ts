@@ -112,7 +112,8 @@ interface IPerson {
 }
 
 // 가장 많이 사용하는 implements 방법
-class implementsTest implements IPerson {
+// tslint:disable-next-line:class-name
+class implementsClassTest implements IPerson {
     name: string;
 
     constructor(name: string) {
@@ -120,6 +121,12 @@ class implementsTest implements IPerson {
     }
 
     hello(): void {
-        console.log('123');
+        console.log(`hello! ${this.name}`);
     }
 }
+
+const implementsTestFunction = new implementsClassTest('connor');
+
+// hello! connor
+implementsTestFunction.hello();
+
