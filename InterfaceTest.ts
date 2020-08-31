@@ -74,7 +74,9 @@ interface InterfaceFuntion {
     age: number;
 
     hello(): void;
+
     helloEs6(): number;
+
     helloArrow(): string;
 }
 
@@ -99,3 +101,25 @@ const a: InterfaceFuntion = {
 a.hello();
 a.helloArrow();
 a.helloEs6();
+
+// ------
+
+interface IPerson {
+    name: string;
+    age?: number;
+
+    hello(): void;
+}
+
+// 가장 많이 사용하는 implements 방법
+class implementsTest implements IPerson {
+    name: string;
+
+    constructor(name: string) {
+        this.name = name;
+    }
+
+    hello(): void {
+        console.log('123');
+    }
+}
