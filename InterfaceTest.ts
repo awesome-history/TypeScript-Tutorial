@@ -123,9 +123,16 @@ class implementsClassTest implements IPerson {
     hello(): void {
         console.log(`hello! ${this.name}`);
     }
+
+    public hi(): void {
+        console.log(`hi! ${this.name}`);
+    }
 }
 
-const implementsTestFunction = new implementsClassTest('connor');
+const implementsTestFunction: IPerson = new implementsClassTest('connor');
+
+// hi는 pubilc 이지만, 직접 상속은 IPerson 이기 때문에.. 사용이 불가능 하다.
+implementsTestFunction.hi();
 
 // hello! connor
 implementsTestFunction.hello();
