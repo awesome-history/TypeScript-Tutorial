@@ -130,10 +130,130 @@ class implementsClassTest implements IPerson {
     hello(): void {
         console.log(`hello! ${this.name}`);
     }
+
+    public hi(): void {
+        console.log(`hi! ${this.name}`);
+    }
 }
 
-const implementsTestFunction = new implementsClassTest('connor');
+const implementsTestFunction: IPerson = new implementsClassTest('connor');
+
+// hi는 pubilc 이지만, 직접 상속은 IPerson 이기 때문에.. 사용이 불가능 하다.
+implementsTestFunction.hi();
 
 // hello! connor
 implementsTestFunction.hello();
 ```
+
+---
+## Class extends Interface
+
+```tsx
+// Interface에 Interface! 중복으로 상속이 가능하다.
+interface EPerson {
+    name : string;
+    age? : number;
+}
+
+interface ExtendsEPersonTest extends EPerson {
+    city : string;
+}
+
+const human : ExtendsEPersonTest = {
+    name: 'human',
+    city: 'Seoul'
+}
+```
+
+- 기본 인터페이스에서 다른 인터페이스를 참조하여 확장이 가능하다.
+- 병열로 넓힐때 사용할 수 있을 것이다.
+
+---
+
+## Function Interface
+
+```tsx
+interface HelloPerson {
+    (name: string, age?: number): void;
+}
+
+let helloPersonFunction: HelloPerson = function (name: string) {
+    console.log(`Hello!!! ${name}`);
+}
+
+helloPersonFunction('Mark');
+```
+
+- Function을 인터페이스 형태로 사용이 가능하다.
+- 하지만, 권장하지 않는것으로 생각됨..
+→ lint에서 걸림..
+
+```tsx
+// lint에서는 type을 사용하라고 함..
+type HelloPerson = (name: string, age?: number) => void;
+
+// ES6에 맞도록 애로우 펑션을 권장함.
+let helloPersonFunction: HelloPerson = (name, age) => {
+    console.log(`Hello!!! ${name}`);
+}
+
+helloPersonFunction('Mark');
+```
+
+---
+## Indexable Types
+
+- 가변적으로 사용할 수 있는 것. 즉 선언해도 되고 선언 안해도 된다.
+
+```tsx
+// key 는 오직 number만.. value는 string이 가능하다.
+interface StringArray {
+    [index: number]: string
+}
+
+const sa: StringArray = {}
+// key가 number로 입력할 경우 [] 형태로 기입해야한다
+sa[100] = 'test';
+
+interface StringDictionary {
+    [index: string]: string
+}
+
+const sd: StringDictionary = {};
+// key가 object 형태로 입력할 경우 객체로 기입해야한다.
+sd.one = 'test';
+
+interface StringArrayDictionary {
+    [index: number]: string;
+    [index: string]: string;
+}
+
+const sad : StringArrayDictionary = {}
+sad[100] = 'hi';
+sad.one = 'good';
+
+// ----------
+
+// StringDictionaryNo 에는 [index: string] 처럼 Indexable 한 type이 string으로 선언되어있어 number, string이 대립된다.
+// [index: string] :string vs name : number..
+// Property 'name' of type 'number' is not assignable to string index type 'string'.
+interface StringDictionaryNo {
+    [index: string]: string
+    name : number;
+}
+```
+
+- 형태가 대체적으로 자유롭다.
+    - `[index: number]: string → sa[100] = 'test'`
+    - `[index: string]: string → sd.test = 'test'`
+- 문제가 되는 케이스도 존재한다.
+    - `[index: string] :string vs name : number..`
+    - 즉, name이 다른 타입을 노출할 경우 대립이 된다.
+        - Indexable type을 통한 내용의 출력값은 string
+        - name에는 출력값은 number..
+
+## 잡다.
+
+- 인터페이스는 각 클래스의 상속 혹은 확장에 대해서는 규격화만 한다 (할당을 받지 못하면 꽝..)
+- 즉, 인터페이스는 런타임에서 어떠한 동작도 하지 않는다고 생각하면됨
+- Notion에 정리되어있음.

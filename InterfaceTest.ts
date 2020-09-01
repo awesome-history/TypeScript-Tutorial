@@ -132,8 +132,74 @@ class implementsClassTest implements IPerson {
 const implementsTestFunction: IPerson = new implementsClassTest('connor');
 
 // hi는 pubilc 이지만, 직접 상속은 IPerson 이기 때문에.. 사용이 불가능 하다.
-implementsTestFunction.hi();
+// implementsTestFunction.hi();
 
 // hello! connor
 implementsTestFunction.hello();
+
+// -------
+
+// Interface에 Interface! 중복으로 상속이 가능하다.
+interface EPerson {
+    name: string;
+    age?: number;
+}
+
+interface ExtendsEPersonTest extends EPerson {
+    city: string;
+}
+
+const human: ExtendsEPersonTest = {
+    name: 'human',
+    city: 'Seoul'
+}
+
+// -------
+
+type HelloPerson = (name: string, age?: number) => void;
+
+let helloPersonFunction: HelloPerson = (name, age) => {
+    console.log(`Hello!!! ${name}`);
+}
+
+helloPersonFunction('Mark');
+
+// --------
+
+// key 는 오직 number만.. value는 string이 가능하다.
+interface StringArray {
+    [index: number]: string
+}
+
+const sa: StringArray = {}
+// key가 number로 입력할 경우 [] 형태로 기입해야한다
+sa[100] = 'test';
+
+interface StringDictionary {
+    [index: string]: string
+}
+
+const sd: StringDictionary = {};
+// key가 object 형태로 입력할 경우 객체로 기입해야한다.
+sd.one = 'test';
+
+interface StringArrayDictionary {
+    [index: number]: string;
+    [index: string]: string;
+}
+
+const sad : StringArrayDictionary = {}
+sad[100] = 'hi';
+sad.one = 'good';
+
+// ----------
+// 문제가 되는 케이스도 존재한다.
+// StringDictionaryNo 에는 [index: string] 처럼 Indexable 한 type이 string으로 선언되어있어 number, string이 대립된다.
+// [index: string] :string vs name : number..
+// Property 'name' of type 'number' is not assignable to string index type 'string'.
+interface StringDictionaryNo {
+    [index: string]: string
+    // name : number;
+    // name : string;
+}
 
