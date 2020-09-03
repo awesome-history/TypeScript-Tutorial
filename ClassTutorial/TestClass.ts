@@ -53,9 +53,46 @@ class ElevatorClass {
         this.name = name;
     }
 
+    hello(): string {
+        return 'hello!!';
+    }
+
     getName = (): string => {
         console.log(this.name)
         return this.name;
     }
 }
 
+// 다음과 같이 멤버 변수를 선언해주지 않아도 된다.
+// 즉, 생성자에서 접근 제어자를 설정할 수 있다.
+class ConstructorCreateClass {
+
+    constructor(protected name: string, protected age: number) {
+
+    }
+    getName() : string {
+        return this.name;
+    }
+
+    getAge() : number{
+        return this.age
+    }
+}
+
+const CreateTest = new ConstructorCreateClass('Makr', 10);
+CreateTest.getAge();
+CreateTest.getName();
+
+// extends를 통하여 사용을 했을 경우, 아무것도 기입하지 않았을때 부모의 상태를 가져간다.
+class ChildConstructorCreateClass extends ConstructorCreateClass {
+
+    // 하지만, constructor를 선언하여 사용할 경우...
+    // super()를 통하여 다시 제어를 해주어야 한다.
+    // constructor() {
+    //     super();
+    // }
+}
+
+const ChildClassTest = new ChildConstructorCreateClass('Makr', 3);
+ChildClassTest.getName();
+ChildClassTest.getAge();

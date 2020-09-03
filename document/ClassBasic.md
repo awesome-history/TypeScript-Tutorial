@@ -16,7 +16,53 @@ const person = new TestClass('Mark');
 // Person을 출력하면 Person Class 객체에는 name은 생성된다.
 // 하지만, age는 할당하지 않았기 때문에 age 객체는 생성되지 않는다. (undefined)
 console.log(person);
+```
+### constructor 에서 멤버 변수를 선언해보자.
 
+```tsx
+// 다음과 같이 멤버 변수를 선언해주지 않아도 된다.
+// 즉, 생성자에서 접근 제어자를 설정할 수 있다.
+class ConstructorCreateClass {
+
+    constructor(protected name: string, protected age: number) {
+
+    }
+    getName() : string {
+        return this.name;
+    }
+
+    getAge() : number{
+        return this.age
+    }
+}
+
+const CreateTest = new ConstructorCreateClass('Makr', 10);
+CreateTest.getAge();
+CreateTest.getName();
+```
+
+### Arrow Function..
+
+```tsx
+// Arrow function Class Test
+class ElevatorClass {
+    public name: string;
+
+    constructor(name: string) {
+        this.name = name;
+    }
+
+		// 메소드 형태로 바로 사용이 가능하다.
+		hello(): string {
+        return 'hello!!';
+    }
+		
+		// 아래와 같이 Arrow Function을 사용할 수 있다.
+    getName = (): string => {
+        console.log(this.name)
+        return this.name;
+    }
+}
 ```
 
 ### Class 변수는 null..? undefined..?
@@ -56,6 +102,44 @@ class TestClass {
 
 → null과 undefined는 모든 타입의 Sub Type다.
 → 즉, 어떠한 저렇게 초기 형태로 비워도 큰 에러가 아니다.
+
+### Child Class.. extends를 했지만 생성자가 없으면 ??
+
+```tsx
+class ConstructorCreateClass {
+
+    constructor(protected name: string, protected age: number) {
+
+    }
+    getName() : string {
+        return this.name;
+    }
+
+    getAge() : number{
+        return this.age
+    }
+}
+
+const CreateTest = new ConstructorCreateClass('Makr', 10);
+CreateTest.getAge();   // Mark
+CreateTest.getName();  // 10
+
+// extends를 통하여 사용을 했을 경우, 아무것도 기입하지 않았을때 부모의 상태를 가져간다.
+class ChildConstructorCreateClass extends ConstructorCreateClass {
+
+    // 하지만, constructor를 선언하여 사용할 경우...
+    // super()를 통하여 다시 제어를 해주어야 한다.
+    // constructor() {
+    //     super();
+    // }
+}
+
+const ChildClassTest = new ChildConstructorCreateClass('Good', 3);
+ChildClassTest.getName();  // Good
+ChildClassTest.getAge();   // 3
+```
+
+→ 부모클래스를 받아서 사용했을때 생성자를 어떻게 설정하냐에 따라 결과값이 달라질 수 있다.
 
 ### ECMAScript 비공개 필드 (ECMAScript Private Fields)
 
