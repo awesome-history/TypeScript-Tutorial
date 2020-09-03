@@ -26,6 +26,7 @@ class TestClass {
     get name(): string {
         return this.#_name;
     }
+
     set name(value: string) {
         this.#_name = value;
     }
@@ -41,4 +42,20 @@ console.log(PrivateTestClass.name);
 
 // setter를 통하여 변경도 가능하다.
 PrivateTestClass.name = 'setter test';
+
+// -----------
+
+// Arrow function Class Test
+class ElevatorClass {
+    public name: string;
+
+    constructor(name: string) {
+        this.name = name;
+    }
+
+    getName = (): string => {
+        console.log(this.name)
+        return this.name;
+    }
+}
 
