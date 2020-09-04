@@ -17,5 +17,4 @@ class SingletonTestClass {
     }
 }
 
-const PSingleton: SingletonClass = SingletonTestClass.getInstance();
-
+const PSingleton: SingletonClass|null = SingletonTestClass.getInstance();

@@ -16,7 +16,9 @@ const person = new TestClass('Mark');
 // Person을 출력하면 Person Class 객체에는 name은 생성된다.
 // 하지만, age는 할당하지 않았기 때문에 age 객체는 생성되지 않는다. (undefined)
 console.log(person);
+
 ```
+
 ### constructor 에서 멤버 변수를 선언해보자.
 
 ```tsx
@@ -102,6 +104,51 @@ class TestClass {
 
 → null과 undefined는 모든 타입의 Sub Type다.
 → 즉, 어떠한 저렇게 초기 형태로 비워도 큰 에러가 아니다.
+
+### Class in static
+
+```tsx
+// static Class는 그대로 사용이 가능하다.
+// function, 변수 등 그대로 사용이 가능하다.
+class PersonCity {
+    public static CITY = "Seoul";
+    private static lastName: string = 'lee';
+
+    #_name: string = '123';
+
+    static good():string {
+        return PersonCity.CITY;
+    }
+}
+
+console.log(PersonCity.CITY);
+
+console.log(PersonCity.good());
+
+```
+
+### abstract class 사용!
+
+```tsx
+// abstract class를 구현이 가능하다.
+// !: << undefined 도 가능하다는 구문이다.
+abstract class APersonClass {
+    protected name !: string;
+
+    abstract setName(name :string): void;
+}
+
+// APersonTestClass 확장을 받아서 사용하면 구현이 된다.
+class APersonTestClass extends APersonClass {
+    setName(name: string) {
+        this.name = name;
+    }
+}
+
+const APersonValue: APersonTestClass = new APersonTestClass();
+
+APersonValue.setName('Mark');
+```
 
 ### Child Class.. extends를 했지만 생성자가 없으면 ??
 
@@ -214,6 +261,34 @@ const howard = new Employee("Howard", "Sales");
 
 - `super()` 는 extends를 받은 부모의 class 생성자를 실행할 수 있다.
 - `#(샵)` 을 사용하여 `Private` 를 명시한 경우, 다른 접근 제어자는 사용할 수 없다.
+
+## Singleton 을 만들 수 있다...!!
+
+```tsx
+
+// private 생성자를 이용해서 내부에서만 인스턴스가 생성이 가능하도록 한다.
+// 공개된 getInstance()를 통하여 static instance를 얻는다.
+// Lazy Loading가 되어 최초 실행시가 아닌, 할당을 할때 사용한다.
+class SingletonTestClass {
+    public static getInstance(): SingletonTestClass | null {
+        if (SingletonTestClass.instance === null) {
+            SingletonTestClass.instance = new SingletonClass();
+        }
+
+        return SingletonTestClass.instance;
+    }
+
+    private static instance: SingletonTestClass | null = null;
+
+    private constructor() {
+    }
+}
+
+// 싱글톤 클래스를 사용할 수 있다.
+const PSingleton: SingletonClass = SingletonTestClass.getInstance();
+```
+
+- 싱글톤 패턴은 Private constructor를 통하여 막을 수 있다.
 
 ---
 
