@@ -5,7 +5,7 @@
 class SingletonTestClass {
     public static getInstance(): SingletonTestClass | null {
         if (SingletonTestClass.instance === null) {
-            SingletonTestClass.instance = new SingletonClass();
+            SingletonTestClass.instance = new SingletonTestClass();
         }
 
         return SingletonTestClass.instance;
@@ -17,4 +17,4 @@ class SingletonTestClass {
     }
 }
 
-const PSingleton: SingletonClass|null = SingletonTestClass.getInstance();
+const PSingleton: SingletonTestClass|null = SingletonTestClass.getInstance();

@@ -15,5 +15,5 @@ class ReadOnlyTest {
     }
 }
 
-const nameReadOnly : ReadOnlyTest = {}
-name.getName();
+const nameReadOnly: ReadOnlyTest = new ReadOnlyTest(10);
+nameReadOnly.getName();
