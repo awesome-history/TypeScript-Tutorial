@@ -7,6 +7,7 @@ function hello(constructor: Function) {
 }
 
 // 데코레이터를 팩토리로 이용하는 방법
+// 일반적인 방법으로 사용된다.
 function helloFactory(show: boolean) {
     if (show) {
         return hello;
