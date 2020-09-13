@@ -4,9 +4,10 @@
 - let은 기본적으로 우리가 아는 기본 자료형으로 추론 한다.
 - const는 리터럴 타입으로 추론
     - 오브젝트 타입을 타입을 쓰지 않으면, 프로퍼티는 let 처럼 추론.
-        -  const person = {name: 'Mark', age: 35}; 면
+        - const person = {name: 'Mark', age: 35}; 면
         - person => {name: string; age: number;} 로 추론한다.
 - 대부분 추론이 쉽다.
     - 단순 변수
     - structuring, destructuring
 - array, 함수의 리턴에서 원하는데로 얻기가 힘들다.
+
