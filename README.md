@@ -13,3 +13,5 @@
 - Class Basic 정리 문서-1 [Class basic](./document/ClassBasic.md)
 
 - Generic 정리 문서 [Generic](./document/Generic.md)
+
+- 타입 추론 관련 문서 [TypeScriptBasics](./document/TypeScriptBasics.md)
